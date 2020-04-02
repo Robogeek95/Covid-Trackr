@@ -8,6 +8,8 @@ import { FolderPageRoutingModule } from './folder-routing.module';
 
 import { FolderPage } from './folder.page';
 import { ComponentsModule } from '../components/components.module';
+import { MarkerService } from '../marker.service';
+
 
 @NgModule({
   imports: [
@@ -16,6 +18,9 @@ import { ComponentsModule } from '../components/components.module';
     IonicModule,
     ComponentsModule,
     FolderPageRoutingModule
+  ],
+  providers: [
+    MarkerService
   ],
   declarations: [FolderPage]
 })
