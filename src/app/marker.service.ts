@@ -6,7 +6,7 @@ import * as L from 'leaflet';
   providedIn: 'root'
 })
 export class MarkerService {
-  capitals: string = '/assets/data/usa-capitals.geojson';
+  capitals: string = '/assets/geojson/africa.geo.json';
 
   constructor(private http: HttpClient) { }
 
@@ -15,7 +15,9 @@ export class MarkerService {
       for (const c of res.features) {
         const lat = c.geometry.coordinates[0];
         const lon = c.geometry.coordinates[1];
-        const marker = L.marker([lon, lat]).addTo(map);
+        const circle = L.circle([lon, lat], {
+          radius: 20
+        }).addTo(map);
       }
     });
   }
