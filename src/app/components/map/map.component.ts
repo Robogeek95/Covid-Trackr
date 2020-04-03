@@ -1,8 +1,9 @@
 import { MarkerService } from './../../marker.service';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import * as L from 'leaflet';
 import { ApiDataService } from 'src/app/api-data.service';
 import { PopupService } from 'src/app/popup.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-map',
@@ -11,13 +12,15 @@ import { PopupService } from 'src/app/popup.service';
 })
 export class MapComponent implements OnInit, AfterViewInit {
   private map;
-  private apiData;
+  private countries;
+
+  @Output() country = new EventEmitter<any>();
 
 
   private initMap(): void {
     this.map = L.map('map', {
       center: [39.8282, -98.5795],
-      zoom: 3
+      zoom: 18
     });
 
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -37,39 +40,43 @@ export class MapComponent implements OnInit, AfterViewInit {
     L.marker({ lon: 30, lat: 50 }).addTo(this.map)
       .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
       .openPopup();
-
-    this.map.locate({ setView: true, maxZoom: 16 });
   }
 
-  constructor(private markerService: MarkerService, private dataService: ApiDataService, private popupService: PopupService) { }
+  constructor(private router: Router, private dataService: ApiDataService, private popupService: PopupService) { }
 
   ngOnInit() {
     this.initMap();
 
     this.dataService.getCountries()
       .subscribe((data: any) => {
-        this.apiData = data;
-        console.log(this.apiData)
+        this.countries = data;
 
-        const maxCase = Math.max(...data.map(c => c.cases), 0);
-        console.log(maxCase);
-        for (const c of this.apiData) {
-          console.log(20 * (Math.sqrt(c.cases) * 100))
+        console.log(this.countries[0])
+        this.country.emit(this.countries[0]);
+
+        for (const c of this.countries) {
           const lon = c.countryInfo.lat;
           const lat = c.countryInfo.long;
-          const circle = L.circle([lon, lat], {
+          L.circle([lon, lat], {
             radius: 20 * (Math.sqrt(c.cases) * 100),
             riseOnHover: true
-          });
-
-          circle.bindPopup(this.popupService.makePopup(c))
-          
-          circle.addTo(this.map);
+          }).bindPopup(this.popupService.makePopup(c))
+            .addTo(this.map)
+            .on('click', () => {
+              this.country.emit(c);
+            });
         }
-      })
+      });
+
   }
 
   ngAfterViewInit() {
+    // console.log(this.map.locate({ setView: true, maxZoom: 16 }));
+
+    // this.map.on('locationfound', () => {
+    //   this.country.emit
+    // })
+
   }
 
 }

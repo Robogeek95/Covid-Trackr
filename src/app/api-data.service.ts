@@ -11,4 +11,8 @@ export class ApiDataService {
   getCountries() {
     return this.http.get('https://corona.lmao.ninja/countries');
   }
+
+  getCountry(country) {
+    return this.http.get(`https://corona.lmao.ninja/countries/${country}`)
+  }
 }

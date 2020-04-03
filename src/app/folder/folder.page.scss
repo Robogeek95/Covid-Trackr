@@ -30,3 +30,12 @@ ion-menu-button {
 ion-content ion-toolbar {
   --background: transparent;
 }
+
+// grid
+ion-grid {
+  --ion-grid-padding: 0px;
+
+  #mapArea {
+    height: 70vh;
+  }
+}
