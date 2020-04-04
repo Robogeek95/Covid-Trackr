@@ -25,10 +25,11 @@
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^5.0.0",
     "core-js": "^2.5.4",
+    "leaflet": "1.5.1",
+    "mapbox-gl": "^1.9.1",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
-    "zone.js": "~0.9.1",
-    "leaflet": "1.5.1"
+    "zone.js": "~0.9.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.20",

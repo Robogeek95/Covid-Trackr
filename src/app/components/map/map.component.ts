@@ -4,6 +4,8 @@ import * as L from 'leaflet';
 import { ApiDataService } from 'src/app/api-data.service';
 import { PopupService } from 'src/app/popup.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import mapboxgl from 'mapbox-gl';
 
 @Component({
   selector: 'app-map',
@@ -18,28 +20,14 @@ export class MapComponent implements OnInit, AfterViewInit {
 
 
   private initMap(): void {
-    this.map = L.map('map', {
-      center: [39.8282, -98.5795],
-      zoom: 18
+    mapboxgl.accessToken = environment.mabox.apiKey;
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11'
+    }).on('dataloading', () => {
+      window.dispatchEvent(new Event('resize'));
+      // mapboxObj.resize(); also work
     });
-
-    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    });
-
-    tiles.addTo(this.map);
-
-    L.circle([51.508, -0.11], {
-      color: 'red',
-      fillColor: '#f03',
-      fillOpacity: 0.5,
-      radius: 200
-    }).addTo(this.map);
-
-    L.marker({ lon: 30, lat: 50 }).addTo(this.map)
-      .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-      .openPopup();
   }
 
   constructor(private router: Router, private dataService: ApiDataService, private popupService: PopupService) { }
@@ -67,7 +55,6 @@ export class MapComponent implements OnInit, AfterViewInit {
             });
         }
       });
-
   }
 
   ngAfterViewInit() {
