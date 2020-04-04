@@ -23,7 +23,9 @@ export class MapComponent implements OnInit, AfterViewInit {
     mapboxgl.accessToken = environment.mabox.apiKey;
     var map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v11'
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [-74.5, 40], // starting position
+      zoom: 9 // starting zoom
     }).on('dataloading', () => {
       window.dispatchEvent(new Event('resize'));
       // mapboxObj.resize(); also work
