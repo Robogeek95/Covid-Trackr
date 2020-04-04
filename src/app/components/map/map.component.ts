@@ -24,41 +24,59 @@ export class MapComponent implements OnInit, AfterViewInit {
     var map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-74.5, 40], // starting position
-      zoom: 9 // starting zoom
+      center: [0, 0],
+      zoom: 2
     }).on('dataloading', () => {
       window.dispatchEvent(new Event('resize'));
       // mapboxObj.resize(); also work
     })
 
     // Add zoom and rotation controls to the map.
-    map.addControl(new mapboxgl.NavigationControl());;
+    map.addControl(new mapboxgl.NavigationControl());
+
+    for (const c of this.countries) {
+      const lon = c.countryInfo.lat;
+      const lat = c.countryInfo.long;
+      var marker = new mapboxgl.Marker(this.customMarker(c), {
+        draggable: true
+      })
+        .setLngLat([lat, lon])
+        .addTo(map);
+    }
   }
 
+  private customMarker(c) {
+    let el = document.createElement('div');
+    el.style.borderRadius = '50%'
+    el.style.height = '20px'
+    el.style.width = '20px'
+    el.style.backgroundColor = 'red'
+    el.style.opacity = '0.4'
+
+    el.addEventListener('click', () => {
+      this.country.emit(c);
+    })
+
+    return el;
+  }
+
+
+  // for (const c of this.countries) {
+  //   const lon = c.countryInfo.lat;
+  //   const lat = c.countryInfo.long;
+  //   var marker = new mapboxgl.Marker()
+  //     .setLngLat([lat, lon])
+  //     .addTo(this.map)
+  // }
   constructor(private router: Router, private dataService: ApiDataService, private popupService: PopupService) { }
 
   ngOnInit() {
-    this.initMap();
-
     this.dataService.getCountries()
       .subscribe((data: any) => {
         this.countries = data;
 
-        console.log(this.countries[0])
         this.country.emit(this.countries[0]);
-
-        for (const c of this.countries) {
-          const lon = c.countryInfo.lat;
-          const lat = c.countryInfo.long;
-          L.circle([lon, lat], {
-            radius: 20 * (Math.sqrt(c.cases) * 100),
-            riseOnHover: true
-          }).bindPopup(this.popupService.makePopup(c))
-            .addTo(this.map)
-            .on('click', () => {
-              this.country.emit(c);
-            });
-        }
+        this.initMap()
       });
   }
 
