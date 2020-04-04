@@ -27,7 +27,10 @@ export class MapComponent implements OnInit, AfterViewInit {
     }).on('dataloading', () => {
       window.dispatchEvent(new Event('resize'));
       // mapboxObj.resize(); also work
-    });
+    })
+
+    // Add zoom and rotation controls to the map.
+    map.addControl(new mapboxgl.NavigationControl());;
   }
 
   constructor(private router: Router, private dataService: ApiDataService, private popupService: PopupService) { }
