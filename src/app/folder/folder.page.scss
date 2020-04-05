@@ -2,40 +2,24 @@ ion-menu-button {
   color: var(--ion-color-primary);
 }
 
-#container {
-  text-align: center;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-  color: #8c8c8c;
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}
-
 ion-content ion-toolbar {
   --background: transparent;
 }
 
-// grid
-ion-grid {
-  --ion-grid-padding: 0px;
+ion-footer {
+  ion-avatar {
+    --border-radius: 4px;
+  }
 
-  #mapArea {
-    height: 70vh;
+  #info {
+    ion-label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      h4 {
+        font-weight: bold;
+      }
+    }
   }
 }

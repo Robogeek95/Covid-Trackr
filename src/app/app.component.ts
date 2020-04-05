@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, ModalController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SearchModalComponent } from './components/search-modal/search-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -11,44 +12,41 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
+  public search = {
+    title: 'search',
+    url: '/search',
+    icon: 'search'
+  };
+
   public appPages = [
     {
-      title: 'Inbox',
-      url: '/folder/Inbox',
-      icon: 'mail'
+      title: 'Map',
+      url: '/map',
+      icon: 'map'
     },
     {
-      title: 'Outbox',
-      url: '/folder/Outbox',
-      icon: 'paper-plane'
+      title: 'Feed',
+      url: '/feed',
+      icon: 'albums'
     },
     {
-      title: 'Favorites',
-      url: '/folder/Favorites',
-      icon: 'heart'
+      title: 'Notifications',
+      url: '/notifications',
+      icon: 'notifications'
     },
     {
-      title: 'Archived',
-      url: '/folder/Archived',
-      icon: 'archive'
-    },
-    {
-      title: 'Trash',
-      url: '/folder/Trash',
-      icon: 'trash'
-    },
-    {
-      title: 'Spam',
-      url: '/folder/Spam',
-      icon: 'warning'
+      title: 'Settings',
+      url: '/settings',
+      icon: 'settings'
     }
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  public social = ['logo-twitter', 'logo-linkedin', 'logo-github'];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private modalController: ModalController,
   ) {
     this.initializeApp();
   }
@@ -58,6 +56,13 @@ export class AppComponent implements OnInit {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: SearchModalComponent,
+    });
+    return await modal.present();
   }
 
   ngOnInit() {

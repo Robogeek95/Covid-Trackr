@@ -22,11 +22,7 @@ ion-menu.md ion-note {
   padding-left: 10px;
 }
 
-ion-menu.md ion-list#inbox-list {
-  border-bottom: 1px solid var(--ion-color-step-150, #d7d8da);
-}
-
-ion-menu.md ion-list#inbox-list ion-list-header {
+ion-menu.md  ion-list-header {
   font-size: 22px;
   font-weight: 600;
 
@@ -116,4 +112,23 @@ ion-note {
 
 ion-item.selected {
   --color: var(--ion-color-primary);
+}
+
+ion-toggle {
+  right: 0;
+  position: absolute;
+  // --background: #ffffff;
+  // --background-checked: #3880ff;
+  // --border-radius: 8px;
+  // --handle-background: #ffffff;
+  // --handle-background-checked: #3880ff;
+  // --handle-border-radius: 8px;
+}
+
+ion-fab-button {
+  --background: aliceblue;
+  --background-hover-opacity: 1;
+  --color: #ffffff;
+  --ripple-color: #1e1e1e;
+  --transition: background-color 15ms linear;
 }

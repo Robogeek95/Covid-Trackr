@@ -8,18 +8,57 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-grid fixed>
-    <ion-row id="mapArea">
-      <ion-col size="12">
-        <app-map (country)="selectCountry($event)"></app-map>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="12">
-        <ion-toolbar>
-          <ion-title>{{selectedCountry?.country}}</ion-title>
-        </ion-toolbar>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <app-map (country)="selectCountry($event)"></app-map>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar class="ion-padding-top">
+    <ion-item lines='none'>
+      <ion-avatar>
+        <img [src]="selectedCountry?.countryInfo.flag" />
+      </ion-avatar>
+      <ion-title>
+        <h2>{{selectedCountry?.country}}</h2>
+      </ion-title>
+    </ion-item>
+  </ion-toolbar>
+  <ion-toolbar id="info">
+    <ion-item lines="none">
+      <ion-label>
+        <h3>
+          Cases
+        </h3>
+        <h4>
+          {{selectedCountry?.cases}}
+        </h4>
+      </ion-label>
+      <ion-label>
+        <h3>
+          Active
+        </h3>
+        <h4>
+          {{selectedCountry?.active}}
+        </h4>
+      </ion-label>
+      <ion-label>
+        <h3>
+          Deaths
+        </h3>
+        <h4>
+          {{selectedCountry?.deaths}}
+        </h4>
+      </ion-label>
+      <ion-label>
+        <h3>
+          Recovered
+        </h3>
+        <h4>
+          {{selectedCountry?.recovered}}
+        </h4>
+      </ion-label>
+      <ion-label (click)="routeToDetails()">
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </ion-label>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>
