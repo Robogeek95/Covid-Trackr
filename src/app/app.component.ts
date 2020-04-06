@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Platform, ModalController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { SearchModalComponent } from './components/search-modal/search-modal.component';
+import { SearchPagePage } from './search-page/search-page.page';
 
 @Component({
   selector: 'app-root',
@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
 
   async presentModal() {
     const modal = await this.modalController.create({
-      component: SearchModalComponent,
+      component: SearchPagePage,
     });
     return await modal.present();
   }

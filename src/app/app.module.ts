@@ -11,19 +11,18 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components.module';
 import { MarkerService } from './marker.service';
-import { SearchModalComponent } from './components/search-modal/search-modal.component';
-// import { SearchModalComponent } from './components/search-modal/search-modal.component';
+import { SearchPagePageModule } from './search-page/search-page.module';
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [SearchModalComponent],
+  entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     ComponentsModule,
     HttpClientModule,
-    ComponentsModule,
+    SearchPagePageModule,
   ],
   providers: [
     StatusBar,
