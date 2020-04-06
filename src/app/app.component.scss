@@ -2,6 +2,16 @@ ion-menu ion-content {
   --background: var(--ion-item-background, var(--ion-background-color, #fff));
 }
 
+ion-menu {
+  --background: #ffffff;
+  --height: 100%;
+  --max-height: 100%;
+  --max-width: 100%;
+  --min-height: 100%;
+  --min-width: 100%;
+  --width: 100%;
+  max-width: 350px;
+}
 ion-menu.md ion-content {
   --padding-start: 8px;
   --padding-end: 8px;

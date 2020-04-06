@@ -29,7 +29,6 @@ export class SearchPagePage implements OnInit {
   }
 
   onSearchChange(e) {
-    console.log(e.detail.value);
     this.results = this.countries.filter(country => {
       return country.title.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
     });

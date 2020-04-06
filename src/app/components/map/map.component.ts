@@ -55,9 +55,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     for (const c of this.countries) {
       const lon = c.countryInfo.lat;
       const lat = c.countryInfo.long;
-      var marker = new mapboxgl.Marker(element(c), {
-        draggable: true
-      })
+      var marker = new mapboxgl.Marker(element(c))
         .setLngLat([lat, lon])
         .addTo(this.map);
     }

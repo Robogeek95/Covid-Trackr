@@ -23,3 +23,15 @@ ion-footer {
     }
   }
 }
+
+ion-grid {
+  --ion-grid-padding: 0px;
+  height: 100%;
+  ion-row {
+    height: 100%;
+    ion-col {
+      --ion-grid-column-padding: 0px;
+      height: 100%;
+    }
+  }
+}
