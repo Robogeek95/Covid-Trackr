@@ -11,58 +11,51 @@
   <ion-grid>
     <ion-row>
       <ion-col size='12' size-md='8'>
-        <app-map  [countryId]="countryId" (country)="selectCountry($event)"></app-map>
+        <app-map [countryId]="countryId" (country)="selectCountry($event)"></app-map>
       </ion-col>
-      <ion-col size='4' class="ion-hide-md-down">
-        <ion-toolbar class="ion-padding-top">
-          <ion-item lines='none'>
-            <ion-avatar>
-              <img [src]="selectedCountry?.countryInfo.flag" />
-            </ion-avatar>
-            <ion-title>
-              <h2>{{selectedCountry?.country}}</h2>
-            </ion-title>
-          </ion-item>
-        </ion-toolbar>
-        <ion-toolbar id="info">
-          <ion-item lines="none">
-            <ion-label>
-              <h3>
+      <ion-col size='4' class="ion-hide-md-down" id="info">
+        <ion-list>
+          <ion-card>
+            <img [src]="selectedCountry?.countryInfo.flag" />
+          </ion-card>
+          <ion-list-header>
+            <h2>{{selectedCountry?.country}}</h2>
+            <ion-button>See All</ion-button>
+          </ion-list-header>
+          <ion-item>
+              <p>
                 Cases
-              </h3>
-              <h4>
+              </p>
+              <h5 slot="end">
                 {{selectedCountry?.cases}}
-              </h4>
-            </ion-label>
-            <ion-label>
-              <h3>
-                Active
-              </h3>
-              <h4>
-                {{selectedCountry?.active}}
-              </h4>
-            </ion-label>
-            <ion-label>
-              <h3>
-                Deaths
-              </h3>
-              <h4>
-                {{selectedCountry?.deaths}}
-              </h4>
-            </ion-label>
-            <ion-label>
-              <h3>
-                Recovered
-              </h3>
-              <h4>
-                {{selectedCountry?.recovered}}
-              </h4>
-            </ion-label>
-            <ion-label (click)="routeToDetails()">
-              <ion-icon name="arrow-forward-outline"></ion-icon>
-            </ion-label>
+              </h5>
           </ion-item>
-        </ion-toolbar>
+          <ion-item>
+              <p>
+                Active
+              </p>
+              <h5 slot="end">
+                {{selectedCountry?.active}}
+              </h5>
+          </ion-item>
+          <ion-item>
+              <p>
+                Deaths
+              </p>
+              <h5 slot="end">
+                {{selectedCountry?.deaths}}
+              </h5>
+          </ion-item>
+          <ion-item>
+              <p>
+                Recovered
+              </p>
+              <h5 slot="end">
+                {{selectedCountry?.recovered}}
+              </h5>
+          </ion-item>
+
+        </ion-list>
       </ion-col>
     </ion-row>
   </ion-grid>
