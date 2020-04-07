@@ -1,6 +1,6 @@
 import { element } from 'protractor';
 import { MarkerService } from './../../marker.service';
-import { Component, OnInit, AfterViewInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Output, EventEmitter, Input } from '@angular/core';
 import * as L from 'leaflet';
 import { ApiDataService } from 'src/app/api-data.service';
 import { PopupService } from 'src/app/popup.service';
@@ -17,6 +17,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   private map;
   private countries;
 
+  @Input() countryId;
   @Output() country = new EventEmitter<any>();
 
 
@@ -64,14 +65,23 @@ export class MapComponent implements OnInit, AfterViewInit {
   constructor(private router: Router, private dataService: ApiDataService, private popupService: PopupService) { }
 
   ngOnInit() {
+    console.log(this.countryId)
+
     this.initMap()
     this.dataService.getCountries()
       .subscribe((data: any) => {
         this.countries = data;
-
-        this.country.emit(this.countries[0]);
         this.customMarker();
       });
+
+    this.dataService.getCountry(this.countryId)
+      .subscribe((data: any) => {
+        let lat = data.countryInfo.lat;
+        let lng = data.countryInfo.long;
+        this.map.setCenter({lat, lng});
+        this.country.emit(data);
+      })
+
   }
 
   ngAfterViewInit() {

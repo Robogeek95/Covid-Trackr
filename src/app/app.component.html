@@ -6,17 +6,57 @@
           <ion-list-header>Covid-19 Trackr
             <ion-toggle></ion-toggle>
           </ion-list-header>
-          <ion-note>azeezlukman95@gmail.com</ion-note>
-
-          <ion-searchbar (click)="presentModal()" placeholder="Search Places"></ion-searchbar>
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none"
-              detail="false" [class.selected]="selectedIndex == i">
-              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
+          <ion-note>last updated on 4/6/2019</ion-note>
         </ion-list>
+
+        <ion-card>
+          <ion-card-header>
+            <ion-icon name="expand-outline" class="ion-float-right"></ion-icon>
+            <ion-card-subtitle>
+              <h1>33,355</h1>
+            </ion-card-subtitle>
+            <ion-card-title>
+              <ion-icon name="globe"></ion-icon>
+              Global Cases
+            </ion-card-title>
+          </ion-card-header>
+          <ion-item lines='none'>
+            <ion-label>Active Cases</ion-label>
+            <span slot="end">3346</span>
+          </ion-item>
+          <ion-item lines='none'>
+            <ion-label>Recovered Cases</ion-label>
+            <span slot="end">3346</span>
+          </ion-item>
+          <ion-item>
+            <ion-label lines='none'>Death Cases</ion-label>
+            <span slot="end">3346</span>
+          </ion-item>
+
+        </ion-card>
+
+        <ion-item>
+          <ion-searchbar (ionChange)="onSearchChange($event)" placeholder="Search Places"></ion-searchbar>
+        </ion-item>
+        <!-- 
+        <ion-card class="ion-margin" *ngFor="let country of countries">
+          <ion-item>
+            <ion-label>
+              {{country.country}}
+            </ion-label>
+            <span slot="end">{{country.cases}}</span>
+          </ion-item>
+        </ion-card> --> 
+        <ion-menu-toggle auto-hide="false" *ngFor="let c of results">
+          <ion-item (click)="setPlace()" [routerLink]="['map/'+c.country]" lines="none"
+            detail="false" [class.selected]="countryId == c.country">
+            <!-- <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon> -->
+            <ion-avatar slot="start">
+              <img [src]="c.countryInfo.flag">
+            </ion-avatar>
+            <ion-label>{{ c.country }}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
       </ion-content>
       <ion-footer>
         <ion-item class="ion-justify-content-center">

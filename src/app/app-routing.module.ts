@@ -4,16 +4,21 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: 'map',
     pathMatch: 'full'
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+    path: 'map',
+    loadChildren: () => import('./folder/folder.module').then(m => m.FolderPageModule),
+  },
+  {
+    path: 'map/:id',
+    loadChildren: () => import('./folder/folder.module').then(m => m.FolderPageModule)
+
   },
   {
     path: 'search-page',
-    loadChildren: () => import('./search-page/search-page.module').then( m => m.SearchPagePageModule)
+    loadChildren: () => import('./search-page/search-page.module').then(m => m.SearchPagePageModule)
   }
 ];
 
@@ -23,4 +28,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

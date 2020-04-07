@@ -6,6 +6,7 @@ import { FolderPage } from './folder.page';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: FolderPage
   }
 ];

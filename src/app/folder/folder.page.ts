@@ -9,6 +9,7 @@ import { NavController } from '@ionic/angular';
 })
 export class FolderPage implements OnInit {
   public folder: string;
+  countryId;
 
   selectedCountry;
   constructor(private activatedRoute: ActivatedRoute,
@@ -16,8 +17,8 @@ export class FolderPage implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.folder = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log(this.selectedCountry)
+    this.countryId = this.activatedRoute.snapshot.paramMap.get('id');
+    console.log(this.countryId);
   }
 
   selectCountry(c: any) {

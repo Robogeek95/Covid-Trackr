@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
+import mapboxgl from 'mapbox-gl';
 
 @Injectable({
   providedIn: 'root'
@@ -21,4 +22,10 @@ export class MarkerService {
       }
     });
   }
+
+  gotoPlace() {
+    console.log(mapboxgl);
+    mapboxgl.map.setCenter([-74, 38]);
+  }
+
 }

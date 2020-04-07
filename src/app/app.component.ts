@@ -1,9 +1,11 @@
+import { MarkerService } from './marker.service';
+import { ApiDataService } from './api-data.service';
 import { Component, OnInit } from '@angular/core';
 
 import { Platform, ModalController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { SearchPagePage } from './search-page/search-page.page';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +14,9 @@ import { SearchPagePage } from './search-page/search-page.page';
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
-  public search = {
-    title: 'search',
-    url: '/search',
-    icon: 'search'
-  };
-
+  public countries;
+  public results;
+public countryId;
   public appPages = [
     {
       title: 'Map',
@@ -46,7 +45,9 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private modalController: ModalController,
+    private activatedRoute: ActivatedRoute,
+    private apiService: ApiDataService,
+    private markerService: MarkerService,
   ) {
     this.initializeApp();
   }
@@ -58,11 +59,20 @@ export class AppComponent implements OnInit {
     });
   }
 
-  async presentModal() {
-    const modal = await this.modalController.create({
-      component: SearchPagePage,
+  async search(query: string) {
+    this.results = await this.countries.filter(country => {
+      return country.country.toLowerCase().indexOf(query.toLowerCase()) > -1;
     });
-    return await modal.present();
+  }
+
+
+  setPlace() {
+    this.markerService.gotoPlace();
+  }
+
+  onSearchChange(e: any) {
+    let query = e.detail.value;
+    this.search(query);
   }
 
   ngOnInit() {
@@ -70,5 +80,13 @@ export class AppComponent implements OnInit {
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
+    this.apiService.getCountries()
+      .subscribe((data) => {
+        this.countries = data
+        this.search("");
+      })
+
+    this.countryId = this.activatedRoute.snapshot.paramMap.get('id');
+    console.log(this.results)
   }
 }
