@@ -9,10 +9,10 @@ export class ApiDataService {
   constructor(private http: HttpClient) { }
 
   getCountries() {
-    return this.http.get('https://corona.lmao.ninja/countries');
+    return this.http.get('https://corona.lmao.ninja/v2/countries');
   }
 
   getCountry(country) {
-    return this.http.get(`https://corona.lmao.ninja/countries/${country}`)
+    return this.http.get(`https://corona.lmao.ninja/v2/countries/${country}`)
   }
 }
