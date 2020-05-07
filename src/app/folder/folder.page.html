@@ -1,9 +1,18 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-menu-button auto-hide="false"></ion-menu-button>
     </ion-buttons>
-    <ion-title>{{ selectedCountry?.country }}</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button>
+        <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <div [ngStyle]="{display: 'flex'}">
+      <ion-title>Map {{ selectedCountry?.country }}</ion-title>
+      <app-color-code [ngStyle]="{color: '#F4F5F9'}"></app-color-code>
+    </div>
   </ion-toolbar>
 </ion-header>
 
