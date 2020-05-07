@@ -47,6 +47,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       el.style.opacity = '0.4'
       el.addEventListener('click', () => {
         this.country.emit(c);
+        this.router.navigate(['/map', c.country])
       })
 
       return el;
@@ -78,7 +79,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       .subscribe((data: any) => {
         let lat = data.countryInfo.lat;
         let lng = data.countryInfo.long;
-        this.map.setCenter({lat, lng});
+        this.map.setCenter({ lat, lng });
         this.country.emit(data);
       })
 
