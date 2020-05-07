@@ -1,0 +1,6 @@
+<div class="codes">
+  <div class="code" *ngFor="let range of ranges">
+    <div class="range-circle" [ngStyle]="{background: range.color}"></div>
+    {{range.range}}
+  </div>
+</div>
