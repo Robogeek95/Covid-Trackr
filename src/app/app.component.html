@@ -73,9 +73,9 @@
       </ion-list>
 
       <ion-list id="link">
-        <ion-item *ngFor="let link of links" lines='none'>
-          <ion-icon slot="start" name="link.icon"></ion-icon>
-          <ion-label>{{link.name}}</ion-label>
+        <ion-item *ngFor="let link of appLinks" lines='none'>
+          <ion-icon slot="start" [name]="link.icon" color="secondary"></ion-icon>
+          <ion-label>{{link.title}}</ion-label>
         </ion-item>
       </ion-list>
     </ion-content>

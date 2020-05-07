@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   public countries;
   public results;
 public countryId;
-  public appPages = [
+  public appLinks = [
     {
       title: 'Map',
       url: '/map',
