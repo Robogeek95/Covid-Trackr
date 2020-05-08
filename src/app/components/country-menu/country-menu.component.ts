@@ -1,5 +1,5 @@
 import { ApiDataService } from './../../api-data.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './country-menu.component.html',
   styleUrls: ['./country-menu.component.scss'],
 })
-export class CountryMenuComponent implements OnInit {
+export class CountryMenuComponent implements OnInit, AfterViewInit {
   selectedCountry
 
   constructor(private activatedRoute: ActivatedRoute, private data: ApiDataService) { }
@@ -16,10 +16,14 @@ export class CountryMenuComponent implements OnInit {
     let country = this.activatedRoute.snapshot.paramMap.get('country');
     this.data.getCountry(country)
       .subscribe((data: any) => {
-        this.selectedCountry = data;
-        console.log(this.selectedCountry)
       })
 
+  }
+
+  ngAfterViewInit() {
+
+
+    console.log(this.selectedCountry)
   }
 
 }

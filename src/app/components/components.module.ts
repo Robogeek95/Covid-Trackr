@@ -1,3 +1,4 @@
+import { CaseBoxComponent } from './case-box/case-box.component';
 import { CountryMenuComponent } from './country-menu/country-menu.component';
 import { IonicModule } from '@ionic/angular';
 import { MapComponent } from './map/map.component';
@@ -6,9 +7,9 @@ import { ColorCodeComponent } from './color-code/color-code.component';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
-    declarations: [MapComponent, ColorCodeComponent, CountryMenuComponent],
+    declarations: [MapComponent, ColorCodeComponent, CountryMenuComponent, CaseBoxComponent],
     imports: [IonicModule, CommonModule],
-    exports: [MapComponent, ColorCodeComponent, CountryMenuComponent]
+    exports: [MapComponent, ColorCodeComponent, CountryMenuComponent, CaseBoxComponent]
 })
 
 export class ComponentsModule { }
