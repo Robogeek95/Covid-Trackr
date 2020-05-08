@@ -65,3 +65,13 @@ app-color-code {
 	display: flex;
 	justify-content: center;
 }
+
+#country-menu {
+	background: #f4f5f9;
+	height: 100%;
+}
+
+#countries {
+	overflow-y: scroll;
+	height: 100%;
+}

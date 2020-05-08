@@ -1,3 +1,4 @@
+import { ApiDataService } from './../api-data.service';
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
@@ -10,15 +11,22 @@ import { NavController } from '@ionic/angular';
 export class FolderPage implements OnInit {
   public folder: string;
   countryId;
+  countries;
 
   selectedCountry;
   constructor(private activatedRoute: ActivatedRoute,
     private navCtrl: NavController,
-    private router: Router) { }
+    private router: Router,
+    private data: ApiDataService
+  ) { }
 
   ngOnInit() {
     this.countryId = this.activatedRoute.snapshot.paramMap.get('id');
     console.log(this.countryId);
+    this.data.getCountries()
+      .subscribe(data => {
+        this.countries = data;
+      })
   }
 
   selectCountry(c: any) {

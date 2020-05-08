@@ -20,15 +20,32 @@
   <ion-grid>
     <ion-row>
       <ion-col size='2'>
+        <div id="countries">
+          <ion-item lines='none'>
+            <ion-label>Countries</ion-label>
+            <ion-button>
+              <ion-icon slot="start" name="add"></ion-icon>
+              sort
+            </ion-button>
+          </ion-item>
+
+          <ion-searchbar placeholder="Search Countries" inputmode="search" type="search"
+            (ionChange)="onSearchChange($event)"></ion-searchbar>
+
+          <ion-item *ngFor="let country of countries">
+            <ion-label>{{country.country}}</ion-label>
+            <ion-label>{{country.cases}}</ion-label>
+          </ion-item>
+        </div>
+      </ion-col>
+      <ion-col size=''>
+        <app-map [countryId]="countryId" (country)="selectCountry($event)"></app-map>
+      </ion-col>
+
+      <ion-col size='2'>
         <div id="country-menu">
           <router-outlet></router-outlet>
         </div>
-        <div id="countries">
-
-        </div>
-      </ion-col>
-      <ion-col size='9'>
-        <app-map [countryId]="countryId" (country)="selectCountry($event)"></app-map>
       </ion-col>
     </ion-row>
   </ion-grid>
