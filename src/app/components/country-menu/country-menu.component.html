@@ -1,21 +1,22 @@
 <ion-item lines='none'>
-  <ion-label>{{ selectedCountry?.country }}</ion-label>
-  <ion-button>view all details </ion-button>
+  <ion-label class="title">Countries</ion-label>
+  <ion-button>
+    <ion-icon slot="start" name="add"></ion-icon>
+    sort
+  </ion-button>
 </ion-item>
 
-<ion-tabs>
-  <ion-tab-bar>
-    <ion-tab-button tab="info">
-      <ion-icon name="flash"></ion-icon>
-      <ion-label>Quick Info</ion-label>
-    </ion-tab-button>
-    <ion-tab-button tab="stat">
-      <ion-icon name="apps"></ion-icon>
-      <ion-label>Statistics</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs>
+<ion-card class="country">
+  <ion-item lines='none'>
+    <ion-label slot="start">Global</ion-label>
+    <ion-label class="end">322209</ion-label>
+  </ion-item>
+</ion-card>
 
-<app-case-box></app-case-box>
-<app-case-box></app-case-box>
-<app-case-box></app-case-box>
+<ion-searchbar placeholder="Search Countries" inputmode="search" type="search" (ionChange)="onSearchChange($event)">
+</ion-searchbar>
+
+<ion-item lines='none' *ngFor="let country of countries">
+  <ion-label>{{country.country}}</ion-label>
+  <ion-label>{{country.cases}}</ion-label>
+</ion-item>

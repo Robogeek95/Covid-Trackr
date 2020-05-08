@@ -8,22 +8,20 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./country-menu.component.scss'],
 })
 export class CountryMenuComponent implements OnInit, AfterViewInit {
-  selectedCountry
+  countries;
 
   constructor(private activatedRoute: ActivatedRoute, private data: ApiDataService) { }
 
   ngOnInit() {
-    let country = this.activatedRoute.snapshot.paramMap.get('country');
-    this.data.getCountry(country)
-      .subscribe((data: any) => {
+      this.data.getCountries()
+      .subscribe(data => {
+        this.countries = data;
       })
 
   }
 
   ngAfterViewInit() {
 
-
-    console.log(this.selectedCountry)
   }
 
 }

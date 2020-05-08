@@ -1,0 +1,29 @@
+ion-searchbar {
+	--box-shadow: 0 6px 12px #dfe0e0;
+	// --cancel-button-color: #3880ff;
+	// --clear-button-color: #3880ff;
+	--color: #454f63;
+	// --icon-color: #3880ff;
+	--placeholder-color: #455b63;
+	// --placeholder-font-style: initial;
+	// --placeholder-font-weight: initial;
+	// --placeholder-opacity 0.5;
+}
+
+.title {
+	font-weight: bold;
+	font-size: 20px;
+}
+
+ion-card.country {
+	--background: #f4f5f9;
+	--color: #181a21;
+	border: 1px solid black;
+	border-radius: 0px;
+}
+
+.end {
+	margin: 0;
+    font-size: 15px;
+    color: #a1a1a1;
+}
