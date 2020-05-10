@@ -22,6 +22,25 @@
       <ion-col size='3'>
         <div>
           <div class="expansion">
+            <div (click)="expandItem(countries)">
+              <ion-icon *ngIf="!countries.expanded" name="chevron-forward-outline"></ion-icon>
+              <ion-icon *ngIf="countries.expanded" name="chevron-down-outline"></ion-icon>
+              <ion-text color="primary">
+                Countries
+              </ion-text>
+            </div>
+
+            <div>
+
+            </div>
+          </div>
+          <app-expandables expandHeight="500px" [expanded]="countries.expanded">
+            <app-country-menu></app-country-menu>
+          </app-expandables>
+        </div>
+
+        <div>
+          <div class="expansion">
             <div (click)="expandItem(casePeek)">
               <ion-icon *ngIf="!casePeek.expanded" name="chevron-forward-outline"></ion-icon>
               <ion-icon *ngIf="casePeek.expanded" name="chevron-down-outline"></ion-icon>
@@ -37,25 +56,6 @@
           <app-expandables expandHeight="200px" [expanded]="casePeek.expanded">
             <!-- <app-case-menu></app-case-menu> -->
             <router-outlet></router-outlet>
-          </app-expandables>
-        </div>
-
-        <div>
-          <div class="expansion">
-            <div (click)="expandItem(countries)">
-              <ion-icon *ngIf="!countries.expanded" name="chevron-forward-outline"></ion-icon>
-              <ion-icon *ngIf="countries.expanded" name="chevron-down-outline"></ion-icon>
-              <ion-text color="primary">
-                Countries
-              </ion-text>
-            </div>
-
-            <div>
-
-            </div>
-          </div>
-          <app-expandables expandHeight="500px" [expanded]="countries.expanded">
-            <app-country-menu></app-country-menu>
           </app-expandables>
         </div>
       </ion-col>
