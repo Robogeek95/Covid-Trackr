@@ -1,6 +1,6 @@
 import { element } from 'protractor';
 import { MarkerService } from './../../marker.service';
-import { Component, OnInit, AfterViewInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Output, EventEmitter, Input, Injectable } from '@angular/core';
 import * as L from 'leaflet';
 import { ApiDataService } from 'src/app/api-data.service';
 import { PopupService } from 'src/app/popup.service';
@@ -13,8 +13,13 @@ import mapboxgl from 'mapbox-gl';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss'],
 })
+
+@Injectable({
+  providedIn: 'root'
+})
+
 export class MapComponent implements OnInit, AfterViewInit {
-  private map;
+  public map;
   private countries;
 
   @Input() countryId;
@@ -66,8 +71,6 @@ export class MapComponent implements OnInit, AfterViewInit {
   constructor(private router: Router, private dataService: ApiDataService, private popupService: PopupService) { }
 
   ngOnInit() {
-    console.log(this.countryId)
-
     this.initMap()
     this.dataService.getCountries()
       .subscribe((data: any) => {

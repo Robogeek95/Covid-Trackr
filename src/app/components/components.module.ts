@@ -6,6 +6,10 @@ import { NgModule } from '@angular/core';
 import { ColorCodeComponent } from './color-code/color-code.component';
 import { CommonModule } from '@angular/common';
 import { CaseMenuComponent } from './case-menu/case-menu.component';
+import { ExpandablesComponent } from './expandables/expandables.component';
+import { ExplorerComponent } from './explorer/explorer.component';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
     declarations: [
@@ -13,18 +17,23 @@ import { CaseMenuComponent } from './case-menu/case-menu.component';
         ColorCodeComponent,
         CountryMenuComponent,
         CaseBoxComponent,
-        CaseMenuComponent
+        CaseMenuComponent,
+        ExpandablesComponent,
+        ExplorerComponent
     ],
     imports: [
         IonicModule,
-        CommonModule
+        CommonModule,
+        FormsModule
     ],
     exports: [
         MapComponent,
         ColorCodeComponent,
         CountryMenuComponent,
         CaseBoxComponent,
-        CaseMenuComponent
+        CaseMenuComponent,
+        ExpandablesComponent,
+        ExplorerComponent
     ]
 })
 
