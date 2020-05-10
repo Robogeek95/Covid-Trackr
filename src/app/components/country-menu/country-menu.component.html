@@ -1,22 +1,17 @@
-<ion-item lines='none'>
-  <ion-label class="title">Countries</ion-label>
-  <ion-button>
-    <ion-icon slot="start" name="add"></ion-icon>
-    sort
-  </ion-button>
-</ion-item>
-
-<ion-card class="country">
+<ion-card  (click)="flyTo(searchResults[0])" class="country">
   <ion-item lines='none'>
     <ion-label slot="start">Global</ion-label>
     <ion-label class="end">322209</ion-label>
   </ion-item>
 </ion-card>
 
-<ion-searchbar placeholder="Search Countries" inputmode="search" type="search" (ionChange)="onSearchChange($event)">
+<ion-searchbar placeholder="Search Countries" inputmode="search" type="search" [(ngModel)]="query" (ionChange)="onSearchChange($event)">
 </ion-searchbar>
 
-<ion-item lines='none' *ngFor="let country of countries">
-  <ion-label>{{country.country}}</ion-label>
-  <ion-label>{{country.cases}}</ion-label>
-</ion-item>
+
+<ion-card (click)="flyTo(result)" class="country" *ngFor="let result of searchResults">
+  <ion-item lines='none'>
+    <ion-label slot="start">{{result.country}}</ion-label>
+    <ion-label class="end">{{result.cases}}</ion-label>
+  </ion-item>
+</ion-card>
