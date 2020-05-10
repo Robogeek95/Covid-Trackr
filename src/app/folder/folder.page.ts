@@ -12,15 +12,24 @@ export class FolderPage implements OnInit {
   public folder: string;
   countryId;
   selectedCountry;
-  
+  public casePeek: any = [];
+  public countries: any = [];
+
   constructor(private activatedRoute: ActivatedRoute,
     private navCtrl: NavController,
     private router: Router,
     private data: ApiDataService
-  ) { }
+  ) {
+    this.casePeek.expanded = true
+    this.countries.expanded = false
+  }
 
   ngOnInit() {
     this.countryId = this.activatedRoute.snapshot.paramMap.get('id');
+  }
+
+  expandItem(item): void {
+    item.expanded = !item.expanded;
   }
 
   selectCountry(c: any) {
