@@ -17,6 +17,7 @@ export class CaseMenuComponent implements OnInit {
     this.data.getCountry(country)
       .subscribe((data: any) => {
         this.selectedCountry = data;
+        console.log(this.selectedCountry);
       })
   }
 
