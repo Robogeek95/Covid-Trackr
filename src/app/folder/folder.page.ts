@@ -75,13 +75,27 @@ export class FolderPage implements OnInit {
   private customMarker() {
     let element = (c) => {
       let el = document.createElement('div');
-      el.style.borderRadius = '50%'
-      el.style.height = '20px'
-      el.style.width = '20px'
-      el.style.backgroundColor = 'red'
-      el.style.opacity = '0.4'
+      el.style.borderRadius = '50%';
+      el.style.height = '20px';
+      el.style.width = '20px';
+
+      // marker color based on cases
+      if (c.cases >= 0 && c.deaths <= 99) {
+        el.style.backgroundColor = 'rgb(94, 226, 160)';
+      }
+      if (c.cases >= 100 && c.deaths <= 999) {
+        el.style.backgroundColor = 'rgb(161, 119, 255)';
+      }
+      if (c.cases >= 1000 && c.deaths <= 9999) {
+        el.style.backgroundColor = 'rgb(255, 161, 119)';
+      }
+      if (c.cases >=10000) {
+        el.style.backgroundColor = 'rgb(255, 161, 119)';
+      }
+
+      el.style.opacity = '0.4';
       el.addEventListener('click', () => {
-        this.router.navigate(['/map', c.country])
+        this.router.navigate(['/map', c.country]);
       })
 
       return el;
