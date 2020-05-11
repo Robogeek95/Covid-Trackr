@@ -71,30 +71,6 @@ app-color-code {
 	height: 100%;
 }
 
-.expansion {
-	padding: 5px 20px;
-	background: rgb(37, 37, 54);
-	color: white;
-	display: flex;
-	justify-content: space-between;
-	cursor: pointer;
-	div {
-		width: 100%;
-	}
-	ion-icon {
-		color: #a5a2a2;
-	}
-	ion-text {
-		color: white;
-	}
-	span {
-		color: #3880ff;
-		display: none;
-	}
-}
-
-.expansion:hover {
-	span {
-		display: block;
-	}
-}
+#map {
+	height: 100%;
+  }

@@ -2,16 +2,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { FolderPage } from './folder.page';
-import { CaseMenuComponent } from '../components/case-menu/case-menu.component';
+import { ExplorerComponent } from '../components/explorer/explorer.component';
 
 const routes: Routes = [
-    {
+  {
     path: '',
     component: FolderPage,
     children: [
       {
         path: ':country',
-        component: CaseMenuComponent
+        component: ExplorerComponent
       }
     ]
   }

@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { CountryMenuComponent } from './country-menu.component';
+import { ExplorerComponent } from './explorer.component';
 
-describe('CountryMenuComponent', () => {
-  let component: CountryMenuComponent;
-  let fixture: ComponentFixture<CountryMenuComponent>;
+describe('ExplorerComponent', () => {
+  let component: ExplorerComponent;
+  let fixture: ComponentFixture<ExplorerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CountryMenuComponent ],
+      declarations: [ ExplorerComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CountryMenuComponent);
+    fixture = TestBed.createComponent(ExplorerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

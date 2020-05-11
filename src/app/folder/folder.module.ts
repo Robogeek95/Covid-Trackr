@@ -1,4 +1,3 @@
-import { ExplorerPage } from './../explorer/explorer.page';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -23,6 +22,6 @@ import { MarkerService } from '../marker.service';
   providers: [
     MarkerService
   ],
-  declarations: [FolderPage, ExplorerPage]
+  declarations: [FolderPage]
 })
 export class FolderPageModule {}

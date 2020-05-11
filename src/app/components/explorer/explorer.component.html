@@ -1,0 +1,62 @@
+<ion-content>
+  <!-- countries -->
+  <div>
+    <div class="expansion">
+      <div (click)="expandItem(countries)">
+        <ion-icon *ngIf="!countries.expanded" name="chevron-forward-outline"></ion-icon>
+        <ion-icon *ngIf="countries.expanded" name="chevron-down-outline"></ion-icon>
+        <ion-text color="primary">
+          {{ selectedCountry?.country }}
+        </ion-text>
+      </div>
+
+      <div>
+
+      </div>
+    </div>
+    <app-expandables expandHeight="100%" [expanded]="countries.expanded">
+      <!-- <app-country-menu></app-country-menu> -->
+      <ion-card (click)="flyTo(searchResults[0])" class="country">
+        <ion-item lines='none'>
+          <ion-label slot="start">Global</ion-label>
+          <ion-label class="end">322209</ion-label>
+        </ion-item>
+      </ion-card>
+
+      <ion-searchbar placeholder="Search Countries" inputmode="search" type="search" [(ngModel)]="query"
+        (ionChange)="onSearchChange()">
+      </ion-searchbar>
+
+      <ion-card (click)="flyTo(result)" class="country" *ngFor="let result of searchResults">
+        <ion-item lines='none'>
+          <ion-label slot="start">{{result.country}}</ion-label>
+          <ion-label class="end">{{result.cases}}</ion-label>
+        </ion-item>
+      </ion-card>
+    </app-expandables>
+  </div>
+
+  <!-- Cases Peek -->
+  <div>
+    <div class="expansion">
+      <div (click)="expandItem(casePeek)">
+        <ion-icon *ngIf="!casePeek.expanded" name="chevron-forward-outline"></ion-icon>
+        <ion-icon *ngIf="casePeek.expanded" name="chevron-down-outline"></ion-icon>
+        <ion-text color="primary">
+          Cases Peek
+        </ion-text>
+      </div>
+
+      <div>
+        <span *ngIf="casePeek.expanded">view detailed report</span>
+      </div>
+    </div>
+    <app-expandables expandHeight="100%" [expanded]="casePeek.expanded">
+      <!-- <app-case-menu></app-case-menu> -->
+      <ion-row>
+        <ion-col size="6" size-md="12" *ngFor="let case of cases">
+          <app-case-box></app-case-box>
+        </ion-col>
+      </ion-row>
+    </app-expandables>
+  </div>

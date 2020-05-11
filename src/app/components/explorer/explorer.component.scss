@@ -1,3 +1,35 @@
+ion-content {
+	overflow: auto;
+}
+
+.expansion {
+	padding: 5px 20px;
+	background: rgb(37, 37, 54);
+	color: white;
+	display: flex;
+	justify-content: space-between;
+	cursor: pointer;
+	div {
+		width: 100%;
+	}
+	ion-icon {
+		color: #a5a2a2;
+	}
+	ion-text {
+		color: white;
+	}
+	span {
+		color: #3880ff;
+		display: none;
+	}
+
+	&:hover {
+		span {
+			display: block;
+		}
+	}
+}
+
 ion-searchbar {
 	--box-shadow: 0 6px 12px #dfe0e0;
 	// --cancel-button-color: #3880ff;
@@ -10,21 +42,16 @@ ion-searchbar {
 	// --placeholder-opacity 0.5;
 }
 
-.title {
-	font-weight: bold;
-	font-size: 20px;
-}
-
 ion-card.country {
 	--background: #f4f5f9;
 	--color: #181a21;
 	border: 1px solid black;
 	border-radius: 0px;
 	cursor: pointer;
-}
 
-.end {
-	margin: 0;
-    font-size: 15px;
-    color: #a1a1a1;
+	.end {
+		margin: 0;
+		font-size: 15px;
+		color: #a1a1a1;
+	}
 }

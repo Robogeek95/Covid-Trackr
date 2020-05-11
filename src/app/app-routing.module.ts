@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { CountryMenuComponent } from './components/country-menu/country-menu.component';
 
 const routes: Routes = [
   {

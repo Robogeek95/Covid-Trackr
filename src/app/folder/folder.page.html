@@ -11,61 +11,23 @@
 
     <div [ngStyle]="{display: 'flex'}">
       <ion-title>Map {{ selectedCountry?.country }}</ion-title>
-      <app-color-code [ngStyle]="{color: '#F4F5F9'}"></app-color-code>
+      <app-color-code class="ion-hide-md-down" [ngStyle]="{color: '#F4F5F9'}"></app-color-code>
     </div>
   </ion-toolbar>
+  <!-- <ion-toolbar class="ion-hide-md-up">
+    <app-color-code [ngStyle]="{color: '#F4F5F9'}"></app-color-code>
+  </ion-toolbar> -->
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-grid>
     <ion-row>
-      <ion-col size='3'>
-        <div>
-          <div class="expansion">
-            <div (click)="expandItem(countries)">
-              <ion-icon *ngIf="!countries.expanded" name="chevron-forward-outline"></ion-icon>
-              <ion-icon *ngIf="countries.expanded" name="chevron-down-outline"></ion-icon>
-              <ion-text color="primary">
-                Countries
-              </ion-text>
-            </div>
-
-            <div>
-
-            </div>
-          </div>
-          <app-expandables expandHeight="500px" [expanded]="countries.expanded">
-            <app-country-menu></app-country-menu>
-          </app-expandables>
-        </div>
-
-        <div>
-          <div class="expansion">
-            <div (click)="expandItem(casePeek)">
-              <ion-icon *ngIf="!casePeek.expanded" name="chevron-forward-outline"></ion-icon>
-              <ion-icon *ngIf="casePeek.expanded" name="chevron-down-outline"></ion-icon>
-              <ion-text color="primary">
-                Cases Peek
-              </ion-text>
-            </div>
-
-            <div>
-              <span *ngIf="casePeek.expanded">view detailed report</span>
-            </div>
-          </div>
-          <app-expandables expandHeight="200px" [expanded]="casePeek.expanded">
-            <!-- <app-case-menu></app-case-menu> -->
-            <router-outlet></router-outlet>
-          </app-expandables>
-        </div>
+      <ion-col id="explorer" size='12' size-md="3">
+        <ion-router-outlet></ion-router-outlet>
       </ion-col>
-      <ion-col size=''>
-        <app-map [countryId]="countryId" (country)="selectCountry($event)"></app-map>
+      <ion-col size="">
+        <div id="map"></div>
       </ion-col>
-      <!-- <ion-col size='2'>
-        <div id="country-menu">
-        </div>
-      </ion-col> -->
     </ion-row>
   </ion-grid>
 
@@ -121,55 +83,3 @@
     </ion-row>
   </ion-grid> -->
 </ion-content>
-
-<ion-footer class="ion-hide-md-up">
-  <ion-toolbar class="ion-padding-top">
-    <ion-item lines='none'>
-      <ion-avatar>
-        <img [src]="selectedCountry?.countryInfo.flag" />
-      </ion-avatar>
-      <ion-title>
-        <h2>{{selectedCountry?.country}}</h2>
-      </ion-title>
-    </ion-item>
-  </ion-toolbar>
-  <ion-toolbar id="info">
-    <ion-item lines="none">
-      <ion-label>
-        <h3>
-          Cases
-        </h3>
-        <h4>
-          {{selectedCountry?.cases}}
-        </h4>
-      </ion-label>
-      <ion-label>
-        <h3>
-          Active
-        </h3>
-        <h4>
-          {{selectedCountry?.active}}
-        </h4>
-      </ion-label>
-      <ion-label>
-        <h3>
-          Deaths
-        </h3>
-        <h4>
-          {{selectedCountry?.deaths}}
-        </h4>
-      </ion-label>
-      <ion-label>
-        <h3>
-          Recovered
-        </h3>
-        <h4>
-          {{selectedCountry?.recovered}}
-        </h4>
-      </ion-label>
-      <ion-label (click)="routeToDetails()">
-        <ion-icon name="arrow-forward-outline"></ion-icon>
-      </ion-label>
-    </ion-item>
-  </ion-toolbar>
-</ion-footer>
