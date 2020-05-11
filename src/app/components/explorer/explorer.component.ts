@@ -1,6 +1,7 @@
 import { ApiDataService } from 'src/app/api-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { MapService } from 'src/app/services/map.service';
 
 @Component({
   selector: 'app-explorer2',
@@ -17,7 +18,8 @@ export class ExplorerComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private data: ApiDataService
+    private data: ApiDataService,
+    private mapService: MapService
   ) {
     this.countries.expanded = true;
     this.casePeek.expanded = false;
@@ -31,12 +33,11 @@ export class ExplorerComponent implements OnInit {
     this.searchResults = this.countries.filter(c => {
       return c.country.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
     });
+    // this.mapService.updateSearchResult(this.searchResults);
   }
 
   flyTo(country) {
-    let lat = country.countryInfo.lat;
-    let lng = country.countryInfo.long;
-    console.log({ lat, lng });
+    this.mapService.updateSelectedCountry(country)
   }
 
   ngOnInit() {
@@ -50,6 +51,6 @@ export class ExplorerComponent implements OnInit {
       .subscribe((data: any) => {
         this.countries = data;
         this.searchResults = data;
-      });   
+      });
   }
 }

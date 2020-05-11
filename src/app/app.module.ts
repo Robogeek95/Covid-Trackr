@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components.module';
 import { MarkerService } from './marker.service';
-import { SearchPagePageModule } from './search-page/search-page.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +21,6 @@ import { SearchPagePageModule } from './search-page/search-page.module';
     AppRoutingModule,
     ComponentsModule,
     HttpClientModule,
-    SearchPagePageModule,
   ],
   providers: [
     StatusBar,

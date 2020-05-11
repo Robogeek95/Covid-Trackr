@@ -1,3 +1,4 @@
+import { MapService } from './../services/map.service';
 import { ApiDataService } from './../api-data.service';
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,22 +13,47 @@ import mapboxgl from 'mapbox-gl';
 })
 export class FolderPage implements OnInit {
   public folder: string;
-  public selectedCountry;
   public map;
   public searchResults;
   query;
-
-  cases = [{},{},{}]
+  public passedCountry;
+  public marker = new mapboxgl.Marker()
+  cases = [{}, {}, {}]
   public casePeek: any = [];
   public countries: any = [];
 
   constructor(private activatedRoute: ActivatedRoute,
     private navCtrl: NavController,
     private router: Router,
-    private data: ApiDataService
+    private data: ApiDataService,
+    private mapService: MapService
   ) {
     this.casePeek.expanded = true
     this.countries.expanded = false
+
+    // get selected country to flyto
+    this.mapService.getSelectedCountry()
+      .subscribe(country => {
+        this.marker.remove()
+        let lat = country.countryInfo.lat;
+        let lng = country.countryInfo.long;
+        this.map.flyTo({
+          // These options control the ending camera position: centered at
+          // the target country, at zoom level 9.
+          center: [lng, lat],
+          zoom: 3,
+          bearing: 0,
+
+          curve: 1, //change the speed at which it zooms out
+
+          // this animation is considered essential with respect to prefers-reduced-motion
+          essential: true
+        });
+        // place marker on country
+        this.marker
+          .setLngLat([lng, lat])
+          .addTo(this.map);;
+      })
   }
 
   private initMap(): void {
@@ -71,6 +97,10 @@ export class FolderPage implements OnInit {
     }
   }
 
+  expandItem(item): void {
+    item.expanded = !item.expanded;
+  }
+
   ngOnInit() {
     this.initMap()
     this.data.getCountries()
@@ -79,20 +109,6 @@ export class FolderPage implements OnInit {
         this.searchResults = data;
         this.customMarker();
       });
-  }
-
-  expandItem(item): void {
-    item.expanded = !item.expanded;
-  }
-
-  flyTo(country) {
-    let lat = country.countryInfo.lat;
-    let lng = country.countryInfo.long;
-    this.map.setCenter({ lat, lng });
-  }
-
-  routeToDetails() {
-    this.navCtrl.navigateForward('/route');
   }
 
 }

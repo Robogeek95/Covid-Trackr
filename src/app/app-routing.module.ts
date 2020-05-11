@@ -11,10 +11,6 @@ const routes: Routes = [
     path: 'map',
     loadChildren: () => import('./folder/folder.module').then(m => m.FolderPageModule),
   },
-  {
-    path: 'search-page',
-    loadChildren: () => import('./search-page/search-page.module').then(m => m.SearchPagePageModule)
-  }
 ];
 
 @NgModule({
