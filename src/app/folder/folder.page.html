@@ -14,18 +14,19 @@
       <app-color-code class="ion-hide-md-down" [ngStyle]="{color: '#F4F5F9'}"></app-color-code>
     </div>
   </ion-toolbar>
-  <!-- <ion-toolbar class="ion-hide-md-up">
-    <app-color-code [ngStyle]="{color: '#F4F5F9'}"></app-color-code>
-  </ion-toolbar> -->
+  <ion-toolbar class="ion-hide-sm-up">
+    <ion-searchbar placeholder="Search Countries" inputmode="search" type="search" [(ngModel)]="query">
+    </ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-grid>
     <ion-row>
-      <ion-col id="explorer" size='12' size-md="3">
+      <ion-col id="explorer" size='12' size-md="4" size-lg="3">
         <ion-router-outlet></ion-router-outlet>
       </ion-col>
-      <ion-col id="map-container" size="">
+      <ion-col id="map-container" size="12" size-md="8" size-lg="9">
         <div id="map"></div>
       </ion-col>
     </ion-row>

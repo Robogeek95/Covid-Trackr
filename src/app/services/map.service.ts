@@ -39,11 +39,10 @@ export class MapService {
     return this.ranges;
   }
 
-  // getSearchResult(): Observable<any> {
-  //   return this.searchResult.asObservable();
-  // }
-
-  // updateSearchResult(result) {
-  //   this.searchResult.next(result);
-  // }
+  makePopup(data: any): String {
+    return `<div>Country: ${data.country}</div>
+    <div>Cases: ${data.cases}</div>
+    <div>Deaths: ${data.deaths}</div>
+    <div>Recovered: ${data.recovered}</div>`
+  };
 }

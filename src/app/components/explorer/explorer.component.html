@@ -6,13 +6,13 @@
         <ion-icon *ngIf="!overview.expanded" name="chevron-forward-outline"></ion-icon>
         <ion-icon *ngIf="overview.expanded" name="chevron-down-outline"></ion-icon>
         <ion-text color="primary">
-          Overview
+          {{selectedCountry?.country}}
         </ion-text>
       </div>
 
-      <div>
+      <!-- <div>
         <span *ngIf="overview.expanded">view detailed report</span>
-      </div>
+      </div> -->
     </div>
     <app-expandables expandHeight="100%" [expanded]="overview.expanded">
       <!-- <app-case-menu></app-case-menu> -->
@@ -21,7 +21,7 @@
   </div>
 
   <!-- countries -->
-  <div>
+  <div class="ion-hide-sm-down">
     <div class="expansion">
       <div (click)="expandItem(countries)">
         <ion-icon *ngIf="!countries.expanded" name="chevron-forward-outline"></ion-icon>
@@ -48,12 +48,7 @@
         (ionChange)="onSearchChange()">
       </ion-searchbar>
 
-      <ion-card (click)="flyTo(result)" class="country" *ngFor="let result of searchResults">
-        <ion-item lines='none'>
-          <ion-label slot="start">{{result.country}}</ion-label>
-          <ion-label class="end">{{result.cases}}</ion-label>
-        </ion-item>
-      </ion-card>
+      <app-country-box (click)="flyTo(result)" [result]='result' *ngFor="let result of searchResults"></app-country-box>
     </app-expandables>
   </div>
 </ion-content>

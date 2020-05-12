@@ -1,3 +1,4 @@
+import { CountryBoxComponent } from './country-box/country-box.component';
 import { CaseBoxComponent } from './case-box/case-box.component';
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
         ColorCodeComponent,
         CaseBoxComponent,
         ExpandablesComponent,
-        ExplorerComponent
+        ExplorerComponent,
+        CountryBoxComponent
     ],
     imports: [
         IonicModule,
@@ -24,7 +26,8 @@ import { FormsModule } from '@angular/forms';
         ColorCodeComponent,
         CaseBoxComponent,
         ExpandablesComponent,
-        ExplorerComponent
+        ExplorerComponent,
+        CountryBoxComponent
     ]
 })
 

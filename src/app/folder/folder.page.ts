@@ -35,10 +35,10 @@ export class FolderPage implements OnInit {
 
     // get selected country to flyto
     this.mapService.getSelectedCountry()
-      .subscribe(country => {
-        this.marker.remove()
-        let lat = country.countryInfo.lat;
-        let lng = country.countryInfo.long;
+      .subscribe(c => {
+        this.removeMarker();
+        let lat = c.countryInfo.lat;
+        let lng = c.countryInfo.long;
         this.map.flyTo({
           // These options control the ending camera position: centered at
           // the target country, at zoom level 9.
@@ -54,8 +54,16 @@ export class FolderPage implements OnInit {
         // place marker on country
         this.marker
           .setLngLat([lng, lat])
-          .addTo(this.map);;
+          .addTo(this.map)
+        // route to country
+        this.router.navigate(['map', c.country]);
+        // remove marker after three secondsx
+        // setTimeout(this.removeMarker, 3000)
       })
+  }
+
+  private removeMarker() {
+    this.marker.remove()
   }
 
   private initMap(): void {
@@ -97,6 +105,13 @@ export class FolderPage implements OnInit {
 
       el.style.opacity = '0.7';
       el.addEventListener('click', () => {
+
+        const lon = c.countryInfo.lat;
+        const lat = c.countryInfo.long;
+        new mapboxgl.Popup()
+          .setLngLat([lat, lon])
+          .setHTML('description')
+          .addTo(this.map);
         this.router.navigate(['/map', c.country]);
       })
 
@@ -107,6 +122,7 @@ export class FolderPage implements OnInit {
     for (const c of this.countries) {
       const lon = c.countryInfo.lat;
       const lat = c.countryInfo.long;
+      let content = this.mapService.makePopup(c)
       var marker = new mapboxgl.Marker(element(c))
         .setLngLat([lat, lon])
         .addTo(this.map);
