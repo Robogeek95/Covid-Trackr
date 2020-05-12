@@ -1,4 +1,25 @@
 <ion-content>
+  <!-- Overview-->
+  <div>
+    <div class="expansion">
+      <div (click)="expandItem(overview)">
+        <ion-icon *ngIf="!overview.expanded" name="chevron-forward-outline"></ion-icon>
+        <ion-icon *ngIf="overview.expanded" name="chevron-down-outline"></ion-icon>
+        <ion-text color="primary">
+          Overview
+        </ion-text>
+      </div>
+
+      <div>
+        <span *ngIf="overview.expanded">view detailed report</span>
+      </div>
+    </div>
+    <app-expandables expandHeight="100%" [expanded]="overview.expanded">
+      <!-- <app-case-menu></app-case-menu> -->
+      <app-case-box *ngIf="selectedCountry" [country]="selectedCountry"></app-case-box>
+    </app-expandables>
+  </div>
+
   <!-- countries -->
   <div>
     <div class="expansion">
@@ -6,7 +27,7 @@
         <ion-icon *ngIf="!countries.expanded" name="chevron-forward-outline"></ion-icon>
         <ion-icon *ngIf="countries.expanded" name="chevron-down-outline"></ion-icon>
         <ion-text color="primary">
-          {{ selectedCountry?.country }}
+          Browse
         </ion-text>
       </div>
 
@@ -35,28 +56,4 @@
       </ion-card>
     </app-expandables>
   </div>
-
-  <!-- Cases Peek -->
-  <div>
-    <div class="expansion">
-      <div (click)="expandItem(casePeek)">
-        <ion-icon *ngIf="!casePeek.expanded" name="chevron-forward-outline"></ion-icon>
-        <ion-icon *ngIf="casePeek.expanded" name="chevron-down-outline"></ion-icon>
-        <ion-text color="primary">
-          Cases Peek
-        </ion-text>
-      </div>
-
-      <div>
-        <span *ngIf="casePeek.expanded">view detailed report</span>
-      </div>
-    </div>
-    <app-expandables expandHeight="100%" [expanded]="casePeek.expanded">
-      <!-- <app-case-menu></app-case-menu> -->
-      <ion-row>
-        <ion-col size="6" size-md="12" *ngFor="let case of cases">
-          <app-case-box></app-case-box>
-        </ion-col>
-      </ion-row>
-    </app-expandables>
-  </div>
+</ion-content>

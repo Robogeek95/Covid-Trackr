@@ -13,16 +13,15 @@ export class ExplorerComponent implements OnInit {
   public query: string;
   public searchResults;
   public countries: any = [];
-  public casePeek: any = [];
-  public cases = [{}, {}, {}, {}];
+  public overview: any = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private data: ApiDataService,
     private mapService: MapService
   ) {
-    this.countries.expanded = true;
-    this.casePeek.expanded = false;
+    this.countries.expanded = false;
+    this.overview.expanded = true;
   }
 
   expandItem(item): void {

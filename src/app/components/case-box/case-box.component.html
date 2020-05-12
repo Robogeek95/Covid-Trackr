@@ -1,17 +1,16 @@
-<ion-card class="ion-padding">
-  <ion-card-subtitle>Total Cases</ion-card-subtitle>
-  <ion-row>
-    <ion-col class="info" size="6">
-      <p>246K</p>
-      <div>
+<ion-row>
+  <ion-col size="6" size-md="12" *ngFor="let detail of details; index as i;">
+    <ion-card>
+      <div class="name" [ngStyle]="{color: colors[1].color}">
+        {{detail.name}}
+      </div>
+      <div class="figure">
+        {{detail.figure}}
+      </div>
+      <div class="new" *ngIf="detail.new >=0" [ngStyle]="{color: colors[3].color}">
         <ion-icon slot="start" name="add"></ion-icon>
-        <span>13.8%</span>
+        <span>{{detail.new}}</span>
       </div>
-    </ion-col>
-    <ion-col size="6">
-      <div class="rad">
-
-      </div>
-    </ion-col>
-  </ion-row>
-</ion-card>
+    </ion-card>
+  </ion-col>
+</ion-row>

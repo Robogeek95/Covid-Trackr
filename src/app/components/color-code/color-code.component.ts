@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MapService } from 'src/app/services/map.service';
 
 @Component({
   selector: 'app-color-code',
@@ -7,26 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ColorCodeComponent implements OnInit {
 
-  ranges = [
-    {
-      color: '#5EE2A0',
-      range: '1 - 99'
-    },
-    {
-      color: '#A177FF',
-      range: '100 - 999'
-    },
-    {
-      color: '#FFA177',
-      range: '1000 - 9999'
-    },
-    {
-      color: '#FF4141',
-      range: '100000 or more'
-    }
-  ]
+  public ranges: any;
 
-  constructor() { }
+  constructor(private mapService: MapService) {
+    this.ranges = this.mapService.getRange()
+  }
 
   ngOnInit() { }
 

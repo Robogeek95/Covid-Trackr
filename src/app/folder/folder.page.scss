@@ -73,4 +73,14 @@ app-color-code {
 
 #map {
 	height: 100%;
-  }
+}
+
+@media screen and (max-width: 800px) {
+	#explorer {
+		order: 2;
+	}
+
+	#map-container {
+		order: 1;
+	}
+}

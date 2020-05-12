@@ -20,6 +20,7 @@ export class FolderPage implements OnInit {
   public marker = new mapboxgl.Marker()
   cases = [{}, {}, {}]
   public casePeek: any = [];
+  public ranges;
   public countries: any = [];
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -30,6 +31,7 @@ export class FolderPage implements OnInit {
   ) {
     this.casePeek.expanded = true
     this.countries.expanded = false
+    this.ranges = this.mapService.getRange();
 
     // get selected country to flyto
     this.mapService.getSelectedCountry()
@@ -81,19 +83,19 @@ export class FolderPage implements OnInit {
 
       // marker color based on cases
       if (c.cases >= 0 && c.deaths <= 99) {
-        el.style.backgroundColor = 'rgb(94, 226, 160)';
+        el.style.backgroundColor = this.ranges[0].color;
       }
       if (c.cases >= 100 && c.deaths <= 999) {
-        el.style.backgroundColor = 'rgb(161, 119, 255)';
+        el.style.backgroundColor = this.ranges[1].color;
       }
       if (c.cases >= 1000 && c.deaths <= 9999) {
-        el.style.backgroundColor = 'rgb(255, 161, 119)';
+        el.style.backgroundColor = this.ranges[2].color;
       }
-      if (c.cases >=10000) {
-        el.style.backgroundColor = 'rgb(255, 161, 119)';
+      if (c.cases >= 10000) {
+        el.style.backgroundColor = this.ranges[3].color;
       }
 
-      el.style.opacity = '0.4';
+      el.style.opacity = '0.7';
       el.addEventListener('click', () => {
         this.router.navigate(['/map', c.country]);
       })
