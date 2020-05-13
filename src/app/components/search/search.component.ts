@@ -1,3 +1,4 @@
+import { ModalController } from '@ionic/angular';
 import { ApiDataService } from 'src/app/api-data.service';
 import { MapService } from 'src/app/services/map.service';
 import { Component, OnInit } from '@angular/core';
@@ -19,12 +20,16 @@ export class SearchComponent implements OnInit {
   constructor(
     private mapService: MapService,
     private data: ApiDataService,
+    public modalController: ModalController
   ) {
     this.searchQuery = new FormControl();
   }
 
   flyTo(country) {
-    this.mapService.updateSelectedCountry(country)
+    this.modalController.dismiss({
+      'dismissed': true
+    });
+    this.mapService.updateSelectedCountry(country);
   }
 
   onSearchInput() {

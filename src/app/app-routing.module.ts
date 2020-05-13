@@ -11,6 +11,10 @@ const routes: Routes = [
     path: 'map',
     loadChildren: () => import('./folder/folder.module').then(m => m.FolderPageModule),
   },
+  {
+    path: 'search-modal',
+    loadChildren: () => import('./search-modal/search-modal.module').then( m => m.SearchModalPageModule)
+  },
 ];
 
 @NgModule({
