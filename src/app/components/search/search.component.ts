@@ -14,7 +14,7 @@ export class SearchComponent implements OnInit {
   public searchQuery: FormControl;
   public searchResults = [];
   public countries: any = [];
-  searching: any = false;
+  searching: boolean;
 
 
   constructor(
@@ -23,6 +23,7 @@ export class SearchComponent implements OnInit {
     public modalController: ModalController
   ) {
     this.searchQuery = new FormControl();
+    this.searching = true;
   }
 
   flyTo(country) {
