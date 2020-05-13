@@ -1,3 +1,4 @@
+import { SearchModalPageModule } from './../search-modal/search-modal.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -17,6 +18,7 @@ import { MarkerService } from '../marker.service';
     FormsModule,
     IonicModule,
     ComponentsModule,
+    SearchModalPageModule,
     FolderPageRoutingModule
   ],
   providers: [

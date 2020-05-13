@@ -1,3 +1,4 @@
+import { SearchComponent } from './search/search.component';
 import { CountryBoxComponent } from './country-box/country-box.component';
 import { CaseBoxComponent } from './case-box/case-box.component';
 import { IonicModule } from '@ionic/angular';
@@ -6,7 +7,7 @@ import { ColorCodeComponent } from './color-code/color-code.component';
 import { CommonModule } from '@angular/common';
 import { ExpandablesComponent } from './expandables/expandables.component';
 import { ExplorerComponent } from './explorer/explorer.component';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,19 +16,21 @@ import { FormsModule } from '@angular/forms';
         CaseBoxComponent,
         ExpandablesComponent,
         ExplorerComponent,
-        CountryBoxComponent
+        CountryBoxComponent,
+        SearchComponent
     ],
     imports: [
         IonicModule,
         CommonModule,
-        FormsModule
+        ReactiveFormsModule
     ],
     exports: [
         ColorCodeComponent,
         CaseBoxComponent,
         ExpandablesComponent,
         ExplorerComponent,
-        CountryBoxComponent
+        CountryBoxComponent,
+        SearchComponent
     ]
 })
 

@@ -1,0 +1,22 @@
+ion-searchbar {
+	--box-shadow: 0 6px 12px #dfe0e0;
+	// --cancel-button-color: #3880ff;
+	// --clear-button-color: #3880ff;
+	--color: #454f63;
+	// --icon-color: #3880ff;
+	--placeholder-color: #455b63;
+	// --placeholder-font-style: initial;
+	// --placeholder-font-weight: initial;
+	// --placeholder-opacity 0.5;
+}
+
+.emptyResult {
+	margin-top: 15px;
+	text-align: center;
+}
+
+.spinner-container {
+	width: 100%;
+	text-align: center;
+	padding: 10px;
+}

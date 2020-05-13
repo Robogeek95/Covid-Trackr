@@ -37,18 +37,14 @@
     </div>
     <app-expandables expandHeight="100%" [expanded]="countries.expanded">
       <!-- <app-country-menu></app-country-menu> -->
-      <ion-card (click)="flyTo(searchResults[0])" class="country">
+      <ion-card (click)="flyTo('global')" class="country">
         <ion-item lines='none'>
           <ion-label slot="start">Global</ion-label>
           <ion-label class="end">322209</ion-label>
         </ion-item>
       </ion-card>
 
-      <ion-searchbar placeholder="Search Countries" inputmode="search" type="search" [(ngModel)]="query"
-        (ionChange)="onSearchChange()">
-      </ion-searchbar>
-
-      <app-country-box (click)="flyTo(result)" [result]='result' *ngFor="let result of searchResults"></app-country-box>
+      <app-search></app-search>
     </app-expandables>
   </div>
 </ion-content>

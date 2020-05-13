@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MapService } from 'src/app/services/map.service';
 
+
 @Component({
   selector: 'app-explorer2',
   templateUrl: './explorer.component.html',
@@ -10,8 +11,6 @@ import { MapService } from 'src/app/services/map.service';
 })
 export class ExplorerComponent implements OnInit {
   public selectedCountry;
-  public query: string;
-  public searchResults;
   public countries: any = [];
   public overview: any = [];
 
@@ -22,17 +21,11 @@ export class ExplorerComponent implements OnInit {
   ) {
     this.countries.expanded = false;
     this.overview.expanded = true;
+
   }
 
   expandItem(item): void {
     item.expanded = !item.expanded;
-  }
-
-  onSearchChange() {
-    this.searchResults = this.countries.filter(c => {
-      return c.country.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
-    });
-    // this.mapService.updateSearchResult(this.searchResults);
   }
 
   flyTo(country) {
@@ -45,11 +38,5 @@ export class ExplorerComponent implements OnInit {
       .subscribe((data: any) => {
         this.selectedCountry = data;
       })
-
-    this.data.getCountries()
-      .subscribe((data: any) => {
-        this.countries = data;
-        this.searchResults = data;
-      });
   }
 }

@@ -1,8 +1,9 @@
+import { SearchModalPage } from './../search-modal/search-modal.page';
 import { MapService } from './../services/map.service';
 import { ApiDataService } from './../api-data.service';
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController, ModalController } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
 import mapboxgl from 'mapbox-gl';
 
@@ -27,7 +28,8 @@ export class FolderPage implements OnInit {
     private navCtrl: NavController,
     private router: Router,
     private data: ApiDataService,
-    private mapService: MapService
+    private mapService: MapService,
+    public modalController: ModalController
   ) {
     this.casePeek.expanded = true
     this.countries.expanded = false
@@ -60,6 +62,13 @@ export class FolderPage implements OnInit {
         // remove marker after three secondsx
         // setTimeout(this.removeMarker, 3000)
       })
+  }
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: SearchModalPage
+    });
+    return await modal.present();
   }
 
   private removeMarker() {
