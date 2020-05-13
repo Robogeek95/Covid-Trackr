@@ -1,3 +1,4 @@
+import { SearchComponent } from './search/search.component';
 import { CountryBoxComponent } from './country-box/country-box.component';
 import { CaseBoxComponent } from './case-box/case-box.component';
 import { IonicModule } from '@ionic/angular';
@@ -15,7 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         CaseBoxComponent,
         ExpandablesComponent,
         ExplorerComponent,
-        CountryBoxComponent
+        CountryBoxComponent,
+        SearchComponent
     ],
     imports: [
         IonicModule,
@@ -27,7 +29,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         CaseBoxComponent,
         ExpandablesComponent,
         ExplorerComponent,
-        CountryBoxComponent
+        CountryBoxComponent,
+        SearchComponent
     ]
 })
 

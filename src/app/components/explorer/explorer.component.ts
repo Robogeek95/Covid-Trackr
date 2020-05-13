@@ -1,10 +1,7 @@
-import { SearchService } from './../../services/search.service';
 import { ApiDataService } from 'src/app/api-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MapService } from 'src/app/services/map.service';
-import { FormControl } from '@angular/forms';
-import { debounceTime } from "rxjs/operators";
 
 
 @Component({
@@ -14,11 +11,8 @@ import { debounceTime } from "rxjs/operators";
 })
 export class ExplorerComponent implements OnInit {
   public selectedCountry;
-  public searchQuery: FormControl;
-  public searchResults;
   public countries: any = [];
   public overview: any = [];
-  searching: any = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -27,21 +21,11 @@ export class ExplorerComponent implements OnInit {
   ) {
     this.countries.expanded = false;
     this.overview.expanded = true;
-    this.searchQuery = new FormControl();
+
   }
 
   expandItem(item): void {
     item.expanded = !item.expanded;
-  }
-
-  filterItems(query) {
-    this.searchResults = this.countries.filter(c => {
-      return c.country.toLowerCase().indexOf(query.toLowerCase()) > -1;
-    });
-  }
-
-  onSearchInput() {
-    this.searching = true;
   }
 
   flyTo(country) {
@@ -54,19 +38,5 @@ export class ExplorerComponent implements OnInit {
       .subscribe((data: any) => {
         this.selectedCountry = data;
       })
-
-    this.data.getCountries()
-      .subscribe((data: any) => {
-        this.countries = data;
-        this.searchResults = data;
-      });
-
-    this.filterItems("");
-    this.searchQuery.valueChanges
-      .pipe(debounceTime(700))
-      .subscribe(query => {
-        this.searching = false;
-        this.filterItems(query);
-      });
   }
 }
