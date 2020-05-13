@@ -44,11 +44,21 @@
         </ion-item>
       </ion-card>
 
-      <ion-searchbar placeholder="Search Countries" inputmode="search" type="search" [(ngModel)]="query"
-        (ionChange)="onSearchChange()">
+      <ion-searchbar placeholder="Search Countries" inputmode="search" type="search" (ionChange)="onSearchInput()"
+        [formControl]="searchQuery">
       </ion-searchbar>
 
-      <app-country-box (click)="flyTo(result)" [result]='result' *ngFor="let result of searchResults"></app-country-box>
+      <div *ngIf="searching" class="spinner-container">
+        <ion-spinner></ion-spinner>
+      </div>
+
+      <div id="results" *ngIf="!searching">
+        <app-country-box (click)="flyTo(result)" [result]='result' *ngFor="let result of searchResults">
+        </app-country-box>
+        <div class="emptyResult" *ngIf="searchResults.length <= 0">
+          Country does not exist or currently has no reported case of Covid19
+        </div>
+      </div>
     </app-expandables>
   </div>
 </ion-content>

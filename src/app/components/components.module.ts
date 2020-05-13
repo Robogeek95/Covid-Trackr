@@ -6,7 +6,7 @@ import { ColorCodeComponent } from './color-code/color-code.component';
 import { CommonModule } from '@angular/common';
 import { ExpandablesComponent } from './expandables/expandables.component';
 import { ExplorerComponent } from './explorer/explorer.component';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,7 +20,7 @@ import { FormsModule } from '@angular/forms';
     imports: [
         IonicModule,
         CommonModule,
-        FormsModule
+        ReactiveFormsModule
     ],
     exports: [
         ColorCodeComponent,
