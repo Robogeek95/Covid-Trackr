@@ -88,6 +88,10 @@ ion-searchbar {
 	// --placeholder-opacity 0.5;
 }
 
+#explorer{
+	box-shadow: 0 6px 12px #dfe0e0;
+}
+
 @media screen and (max-width: 800px) {
 	#explorer {
 		order: 2;
