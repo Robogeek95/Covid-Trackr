@@ -9,7 +9,7 @@ import { FolderPageRoutingModule } from './folder-routing.module';
 
 import { FolderPage } from './folder.page';
 import { ComponentsModule } from '../components/components.module';
-import { MarkerService } from '../marker.service';
+import { MarkerService } from '../services/marker.service';
 
 
 @NgModule({

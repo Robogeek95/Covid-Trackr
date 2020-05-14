@@ -10,7 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components.module';
-import { MarkerService } from './marker.service';
+import { MarkerService } from './services/marker.service';
 
 @NgModule({
   declarations: [AppComponent],

@@ -1,5 +1,5 @@
-import { MarkerService } from './marker.service';
-import { ApiDataService } from './api-data.service';
+import { MarkerService } from './services/marker.service';
+import { ApiDataService } from './services/api-data.service';
 import { Component, OnInit } from '@angular/core';
 
 import { Platform, ModalController } from '@ionic/angular';

@@ -1,6 +1,6 @@
 import { SearchModalPage } from './../search-modal/search-modal.page';
 import { MapService } from './../services/map.service';
-import { ApiDataService } from './../api-data.service';
+import { ApiDataService } from '../services/api-data.service';
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController, ModalController } from '@ionic/angular';
@@ -66,7 +66,8 @@ export class FolderPage implements OnInit {
 
   async presentModal() {
     const modal = await this.modalController.create({
-      component: SearchModalPage
+      component: SearchModalPage,
+      animated: true,
     });
     return await modal.present();
   }

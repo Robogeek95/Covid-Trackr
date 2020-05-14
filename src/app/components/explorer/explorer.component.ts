@@ -1,4 +1,4 @@
-import { ApiDataService } from 'src/app/api-data.service';
+import { ApiDataService } from 'src/app/services/api-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MapService } from 'src/app/services/map.service';
