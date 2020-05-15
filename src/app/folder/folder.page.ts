@@ -42,22 +42,7 @@ export class FolderPage implements OnInit {
         this.removeMarker();
         let lat = c.countryInfo.lat;
         let lng = c.countryInfo.long;
-        this.map.flyTo({
-          // These options control the ending camera position: centered at
-          // the target country, at zoom level 9.
-          center: [lng, lat],
-          zoom: 3,
-          bearing: 0,
-
-          curve: 1, //change the speed at which it zooms out
-
-          // this animation is considered essential with respect to prefers-reduced-motion
-          essential: true
-        });
-        // place marker on country
-        this.marker
-          .setLngLat([lng, lat])
-          .addTo(this.map)
+        this.flyTo(c);
         // route to country
         this.router.navigate(['/distribution', c.country]);
         // remove marker after three secondsx
@@ -93,6 +78,27 @@ export class FolderPage implements OnInit {
 
     // Add zoom and rotation controls to the map.
     this.map.addControl(new mapboxgl.NavigationControl());
+  }
+
+  flyTo(c) {
+    let lat = c.countryInfo.lat;
+    let lng = c.countryInfo.long;
+    this.map.flyTo({
+      // These options control the ending camera position: centered at
+      // the target country, at zoom level 9.
+      center: [lng, lat],
+      zoom: 3,
+      bearing: 0,
+
+      curve: 1, //change the speed at which it zooms out
+
+      // this animation is considered essential with respect to prefers-reduced-motion
+      essential: true
+    });
+    // place marker on country
+    this.marker
+      .setLngLat([lng, lat])
+      .addTo(this.map)
   }
 
   private customMarker() {
@@ -151,7 +157,6 @@ export class FolderPage implements OnInit {
     this.data.getCountries()
       .subscribe((data: any) => {
         this.countries = data;
-        this.searchResults = data;
         this.customMarker();
       });
   }
