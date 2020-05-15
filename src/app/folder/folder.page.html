@@ -27,6 +27,9 @@
         <ion-router-outlet></ion-router-outlet>
       </ion-col>
       <ion-col id="map-container" size="12" size-md="8" size-lg="9">
+        <div class="map-loading" *ngIf="!mapLoaded">
+          <ion-spinner></ion-spinner>
+        </div>
         <div id="map"></div>
       </ion-col>
     </ion-row>

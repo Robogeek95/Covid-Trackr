@@ -23,6 +23,7 @@ export class FolderPage implements OnInit {
   public casePeek: any = [];
   public ranges;
   public countries: any = [];
+  mapLoaded: boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute,
     private navCtrl: NavController,
@@ -58,7 +59,7 @@ export class FolderPage implements OnInit {
           .setLngLat([lng, lat])
           .addTo(this.map)
         // route to country
-        this.router.navigate(['map', c.country]);
+        this.router.navigate(['/distribution', c.country]);
         // remove marker after three secondsx
         // setTimeout(this.removeMarker, 3000)
       })
@@ -84,8 +85,10 @@ export class FolderPage implements OnInit {
       center: [0, 0],
       zoom: 2
     }).on('dataloading', () => {
-      window.dispatchEvent(new Event('resize'));
-      // mapboxObj.resize(); also work
+      // window.dispatchEvent(new Event('resize'));
+      this.map.resize();
+    }).on('load', () => {
+      this.mapLoaded = true;
     })
 
     // Add zoom and rotation controls to the map.
@@ -122,7 +125,7 @@ export class FolderPage implements OnInit {
           .setLngLat([lat, lon])
           .setHTML('description')
           .addTo(this.map);
-        this.router.navigate(['/map', c.country]);
+        this.router.navigate(['/distribution', c.country]);
       })
 
       return el;
