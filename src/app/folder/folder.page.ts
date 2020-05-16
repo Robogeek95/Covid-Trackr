@@ -109,19 +109,8 @@ export class FolderPage implements OnInit {
       el.style.width = '20px';
 
       // marker color based on cases
-      if (c.cases >= 0 && c.deaths <= 99) {
-        el.style.backgroundColor = this.ranges[0].color;
-      }
-      if (c.cases >= 100 && c.deaths <= 999) {
-        el.style.backgroundColor = this.ranges[1].color;
-      }
-      if (c.cases >= 1000 && c.deaths <= 9999) {
-        el.style.backgroundColor = this.ranges[2].color;
-      }
-      if (c.cases >= 10000) {
-        el.style.backgroundColor = this.ranges[3].color;
-      }
-
+      el.style.backgroundColor = this.mapService.getRangeColor(c);
+      
       el.style.opacity = '0.7';
       el.addEventListener('click', () => {
 

@@ -39,6 +39,21 @@ export class MapService {
     return this.ranges;
   }
 
+  getRangeColor(c): string {
+    if (c.cases >= 0 && c.cases <= 99) {
+      return this.ranges[1].toString();
+    }
+    if (c.cases >= 100 && c.cases <= 999) {
+      return this.ranges[1].toString();
+    }
+    if (c.cases >= 1000 && c.cases <= 9999) {
+      return this.ranges[1].toString();
+    }
+    if (c.cases >= 10000) {
+      return this.ranges[1].toString();
+    }
+  }
+
   makePopup(data: any): String {
     return `<div>Country: ${data.country}</div>
     <div>Cases: ${data.cases}</div>

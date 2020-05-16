@@ -13,6 +13,8 @@ export class ExplorerComponent implements OnInit {
   public selectedCountry;
   public countries: any = [];
   public overview: any = [];
+  country: any;
+  rangeColor: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -21,7 +23,6 @@ export class ExplorerComponent implements OnInit {
   ) {
     this.countries.expanded = false;
     this.overview.expanded = true;
-
   }
 
   expandItem(item): void {
@@ -33,10 +34,11 @@ export class ExplorerComponent implements OnInit {
   }
 
   ngOnInit() {
-    let country = this.activatedRoute.snapshot.paramMap.get('country');
-    this.data.getCountry(country)
+    this.country = this.activatedRoute.snapshot.paramMap.get('country');
+    this.data.getCountry(this.country)
       .subscribe((data: any) => {
         this.selectedCountry = data;
+        this.rangeColor = this.mapService.getRangeColor(data);
       })
   }
 }

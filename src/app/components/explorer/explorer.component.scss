@@ -1,5 +1,5 @@
 ion-content {
-	--overflow: hidden;
+	--overflow: auto;
 }
 
 .expansion {
@@ -42,4 +42,12 @@ ion-card.country {
 		font-size: 15px;
 		color: #a1a1a1;
 	}
+}
+
+ion-item.info {
+	--background: #4caf50;
+	color: #f5f6f9;
+	width: 100%;
+	z-index: 3;
+	text-transform: capitalize;
 }

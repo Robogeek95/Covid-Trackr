@@ -1,12 +1,18 @@
 <ion-content>
   <!-- Overview-->
+  <ion-item class="info" [ngStyle]="{background: rangeColor}">
+      <h3>
+        {{country}}
+      </h3>
+  </ion-item>
+
   <div>
     <div class="expansion">
       <div (click)="expandItem(overview)">
-        <ion-icon *ngIf="!overview.expanded" name="chevron-forward-outline"></ion-icon>
+        <ion-icon *ngIf=" !overview.expanded" name="chevron-forward-outline"></ion-icon>
         <ion-icon *ngIf="overview.expanded" name="chevron-down-outline"></ion-icon>
         <ion-text color="primary">
-          {{selectedCountry?.country}}
+          Overview
         </ion-text>
       </div>
 
@@ -16,6 +22,9 @@
     </div>
     <app-expandables expandHeight="100%" [expanded]="overview.expanded">
       <!-- <app-case-menu></app-case-menu> -->
+      <div *ngIf="!selectedCountry">
+        <ion-spinner name="bubbles"></ion-spinner>
+      </div>
       <app-case-box *ngIf="selectedCountry" [country]="selectedCountry"></app-case-box>
     </app-expandables>
   </div>
