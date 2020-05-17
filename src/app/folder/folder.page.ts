@@ -12,7 +12,7 @@ import mapboxgl from 'mapbox-gl';
   templateUrl: './folder.page.html',
   styleUrls: ['./folder.page.scss'],
 })
-export class FolderPage implements OnInit {
+export class FolderPage implements OnInit, AfterViewInit {
   public folder: string;
   public map;
   public searchResults;
@@ -39,7 +39,6 @@ export class FolderPage implements OnInit {
     // get selected country to flyto
     this.mapService.getSelectedCountry()
       .subscribe(c => {
-        this.removeMarker();
         let lat = c.countryInfo.lat;
         let lng = c.countryInfo.long;
         this.flyTo(c);
@@ -82,6 +81,7 @@ export class FolderPage implements OnInit {
   }
 
   flyTo(c) {
+    this.removeMarker();
     let lat = c.countryInfo.lat;
     let lng = c.countryInfo.long;
     this.map.flyTo({
@@ -114,12 +114,7 @@ export class FolderPage implements OnInit {
       el.style.opacity = '0.7';
       el.addEventListener('click', () => {
 
-        const lon = c.countryInfo.lat;
-        const lat = c.countryInfo.long;
-        new mapboxgl.Popup()
-          .setLngLat([lat, lon])
-          .setHTML('description')
-          .addTo(this.map);
+        this.flyTo(c);
         this.router.navigate(['/distribution', c.country]);
       })
 
@@ -149,4 +144,14 @@ export class FolderPage implements OnInit {
       });
   }
 
+  ngAfterViewInit() {
+    const country = window.location.pathname.split('distribution/')[1];
+    if (country !== undefined) {
+      console.log(country);
+      this.data.getCountry(country)
+        .subscribe(data => {
+          this.flyTo(data);
+        })
+    }
+  }
 }
