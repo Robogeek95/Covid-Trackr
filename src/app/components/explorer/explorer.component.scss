@@ -45,9 +45,15 @@ ion-card.country {
 }
 
 ion-item.info {
-	--background: #4caf50;
-	color: #f5f6f9;
+	// --background: #4caf50;
+	color: #020a22;
 	width: 100%;
 	z-index: 3;
 	text-transform: capitalize;
+	ion-avatar {
+		height: 20px;
+		width: 20px;
+		margin-right: 5px;
+		background-color: #795548;
+	}
 }

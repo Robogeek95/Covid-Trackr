@@ -41,16 +41,16 @@ export class MapService {
 
   getRangeColor(c): string {
     if (c.cases >= 0 && c.cases <= 99) {
-      return this.ranges[1].toString();
+      return this.ranges[0].color.toString();
     }
     if (c.cases >= 100 && c.cases <= 999) {
-      return this.ranges[1].toString();
+      return this.ranges[1].color.toString();
     }
     if (c.cases >= 1000 && c.cases <= 9999) {
-      return this.ranges[1].toString();
+      return this.ranges[2].color.toString();
     }
     if (c.cases >= 10000) {
-      return this.ranges[1].toString();
+      return this.ranges[3].color.toString();
     }
   }
 

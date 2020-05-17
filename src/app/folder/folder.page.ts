@@ -73,6 +73,7 @@ export class FolderPage implements OnInit {
       // window.dispatchEvent(new Event('resize'));
       this.map.resize();
     }).on('load', () => {
+      this.customMarker();
       this.mapLoaded = true;
     })
 
@@ -107,10 +108,9 @@ export class FolderPage implements OnInit {
       el.style.borderRadius = '50%';
       el.style.height = '20px';
       el.style.width = '20px';
-
+      let color = this.mapService.getRangeColor(c);
       // marker color based on cases
-      el.style.backgroundColor = this.mapService.getRangeColor(c);
-      
+      el.style.backgroundColor = color;
       el.style.opacity = '0.7';
       el.addEventListener('click', () => {
 
@@ -146,7 +146,6 @@ export class FolderPage implements OnInit {
     this.data.getCountries()
       .subscribe((data: any) => {
         this.countries = data;
-        this.customMarker();
       });
   }
 
